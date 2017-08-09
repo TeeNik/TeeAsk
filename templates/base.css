@@ -3,17 +3,13 @@
   width: 100%;
   height: 100%;
   
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 7fr 3fr;
 
   grid-template-rows: [header-top] 10vh [header-bottom  main-top] auto [main-bottom];
 
   grid-template-areas: "banner    banner"
                        "container menu";
   }
-
-.go {
-	font-size: 40px;
-}
 
 .grid > :nth-child(1) {
     background-color: #FCC;
@@ -30,6 +26,8 @@
   
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
+	
+	margin-left: 10vw;
 }
 
 .grid > :nth-child(3) {
@@ -37,10 +35,52 @@
   
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
+	
+	margin-right: 10vw;
 }
 
-.header-button{
-	width: 8vh;;
+.logo{
+	cursor: pointer;
+	width: 15vh;;
 	height: 8vh;
 	margin: 1vh;
+}
+
+.header-button-right{
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	width: 8vh;;
+	height: 8vh;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	float: right;
+}
+
+.header-button-right:hover{
+	font-size: 16px;
+}
+
+.post {
+	margin: 1vh 2vw;
+	border: solid 2px #333333;
+	border-radius: 5px;
+}
+
+/*.post .left {
+	position: absolute; left: 0; width: 30%;
+}
+
+.post .right {
+	position: absolute; right: 0; width: 70%;
+}*/
+
+.block{
+ display:inline-block;
+ vertical-align:middle;
+}
+
+.avatar {
+	width: 4vw;
+	height: 4vw;
 }
