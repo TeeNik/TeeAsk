@@ -1,0 +1,46 @@
+.grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  
+  grid-template-columns: 3fr 1fr;
+
+  grid-template-rows: [header-top] 10vh [header-bottom  main-top] auto [main-bottom];
+
+  grid-template-areas: "banner    banner"
+                       "container menu";
+  }
+
+.go {
+	font-size: 40px;
+}
+
+.grid > :nth-child(1) {
+    background-color: #FCC;
+  
+    grid-column-start: banner-start;
+    grid-column-end: banner-end;
+  
+    grid-row-start: header-top;
+    grid-row-end: header-bottom;
+}
+
+.grid > :nth-child(2) {
+    background-color: #CFC;
+  
+    grid-row-start: header-bottom;
+    grid-row-end: main-bottom;
+}
+
+.grid > :nth-child(3) {
+    background-color: #CCF;
+  
+    grid-row-start: header-bottom;
+    grid-row-end: main-bottom;
+}
+
+.header-button{
+	width: 8vh;;
+	height: 8vh;
+	margin: 1vh;
+}
