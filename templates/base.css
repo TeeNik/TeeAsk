@@ -1,4 +1,11 @@
+body{
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif;
+}
+
 .grid {
+  
+  background-image: url(../static/img/back.jpg);
   display: grid;
   width: 100%;
   height: 100%;
@@ -12,7 +19,7 @@
   }
 
 .grid > :nth-child(1) {
-    background-color: #FCC;
+    background-color: #f8f8f8;
   
     grid-column-start: banner-start;
     grid-column-end: banner-end;
@@ -21,9 +28,9 @@
     grid-row-end: header-bottom;
 }
 
-.grid > :nth-child(2) {
-    background-color: #CFC;
-  
+.grid > :nth-child(2) {  
+    
+    background-color: #f8f8f8;
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
 	
@@ -31,8 +38,8 @@
 }
 
 .grid > :nth-child(3) {
-    background-color: #CCF;
   
+    background-color: #f8f8f8;
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
 	
@@ -47,6 +54,7 @@
 }
 
 .header-button-right{
+    font-size: 16px;
 	cursor: pointer;
 	background-color: transparent;
 	border: none;
@@ -58,28 +66,33 @@
 }
 
 .header-button-right:hover{
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .post {
 	margin: 1vh 2vw;
 	border: solid 2px #333333;
 	border-radius: 15px;
+    background-color: #dce6f2;
 }
 
 .post-pic {
-    padding-left: 0.5vw;
-    padding-top: 0.5vw;
+    padding-left: 1.5vw;
+    padding-top: 1.5vw;
     float: left;
 }
 
 .post-text {
-    margin-left: 110px;
+    margin-left: 6vw;
+    margin-right: 2vw;
 }
 
 .post-img {
     width: 4vw;
     height: 4vw;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 10px;
 }
 
 .rating-text{
