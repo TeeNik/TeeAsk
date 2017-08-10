@@ -70,8 +70,9 @@ body{
 }
 
 .post {
+    min-width: 800px;
 	margin: 1vh 2vw;
-	border: solid 2px #333333;
+	border: solid 2px #e3e3e3;
 	border-radius: 15px;
     background-color: #dce6f2;
 }
@@ -83,7 +84,7 @@ body{
 }
 
 .post-text {
-    margin-left: 6vw;
+    margin-left: 13%;
     margin-right: 2vw;
 }
 
@@ -102,7 +103,7 @@ body{
 
 .rating-img {
     cursor: pointer;
-    margin-top: 2vh ;
+    max-width: 70px;
     width: 7vw;
     height: 3vh;
 }
@@ -115,4 +116,20 @@ body{
 .avatar {
 	width: 4vw;
 	height: 4vw;
+}
+
+.panel {
+    margin: 1vh 2vh 1vw 0;
+    border: solid 2px #bce8f1;
+    border-radius: 10px;
+    
+}
+
+.panel-head {
+    padding: 1vh 1vw;
+    background-color: #d9edf7;
+}
+
+.panel-body {
+    padding: 1vh 1vw;
 }
