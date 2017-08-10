@@ -64,20 +64,39 @@
 .post {
 	margin: 1vh 2vw;
 	border: solid 2px #333333;
-	border-radius: 5px;
+	border-radius: 15px;
 }
 
-/*.post .left {
-	position: absolute; left: 0; width: 30%;
+.post-pic {
+    padding-left: 0.5vw;
+    padding-top: 0.5vw;
+    float: left;
 }
 
-.post .right {
-	position: absolute; right: 0; width: 70%;
-}*/
+.post-text {
+    margin-left: 110px;
+}
+
+.post-img {
+    width: 4vw;
+    height: 4vw;
+}
+
+.rating-text{
+    font-size: 3vh;
+    padding-bottom: 20px;
+}
+
+.rating-img {
+    cursor: pointer;
+    margin-top: 2vh ;
+    width: 7vw;
+    height: 3vh;
+}
 
 .block{
- display:inline-block;
- vertical-align:middle;
+    display:inline-block;
+    vertical-align:middle;
 }
 
 .avatar {
