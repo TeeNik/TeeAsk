@@ -84,7 +84,7 @@ body{
 }
 
 .post-text {
-    margin-left: 13%;
+    margin-left: 16%;
     margin-right: 2vw;
 }
 
@@ -125,10 +125,23 @@ body{
 }
 
 .panel-head {
+    color: #31709c;
     padding: 1vh 1vw;
     background-color: #d9edf7;
 }
 
 .panel-body {
     padding: 1vh 1vw;
+}
+
+.panel-2 {
+    margin: 1vh 2vh 1vw 0;
+    border: solid 2px #f2dede;
+    border-radius: 10px;
+}
+
+.panel-head-2 {
+    color: #b04465;
+    padding: 1vh 1vw;
+    background-color: #f2dede;
 }
