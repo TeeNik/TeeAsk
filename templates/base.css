@@ -47,10 +47,21 @@ body{
 }
 
 .logo{
+    float: left;
 	cursor: pointer;
 	width: 15vh;;
 	height: 8vh;
 	margin: 1vh;
+}
+
+.search {
+    width: 15vw;
+    font-size: 18px;
+    float: left;
+    margin-top: 4vh;
+    margin-left: 4vw;
+    border-radius: 5px;
+    
 }
 
 .header-button-right{
