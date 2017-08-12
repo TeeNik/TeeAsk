@@ -3,13 +3,16 @@
   --border: #a8a8a8;	
 }
 
+html {
+	height: 100%;
+}
+
 body{
     margin: 0;
     font-family: 'Fira Sans', sans-serif;
 }
 
 .grid {
-  
   background-image: url(../img/back.jpg);
   display: grid;
   width: 100%;

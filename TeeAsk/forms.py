@@ -4,4 +4,9 @@ from .models import *
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
-        exclude = [""]
+        exclude = ["avatar"]
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        exclude = ['username', 'avatar']
