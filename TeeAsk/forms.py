@@ -3,5 +3,5 @@ from .models import *
 
 class RegistrationForm(forms.ModelForm):
     class Meta:
-        model = Users
+        model = User
         exclude = [""]
