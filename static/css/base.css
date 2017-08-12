@@ -1,3 +1,8 @@
+:root {
+  --bg: #f5f5f5; 
+  --border: #a8a8a8;	
+}
+
 body{
     margin: 0;
     font-family: 'Fira Sans', sans-serif;
@@ -19,7 +24,7 @@ body{
   }
 
 .grid > :nth-child(1) {
-    background-color: #f8f8f8;
+    background-color: var(--bg);
   
     grid-column-start: banner-start;
     grid-column-end: banner-end;
@@ -27,21 +32,21 @@ body{
     grid-row-start: header-top;
     grid-row-end: header-bottom;
 	
-	border-bottom: 3px solid #e7e7e7;
+	border-bottom: 3px solid var(--border);
 }
 
 .grid > :nth-child(2) {  
     
-    background-color: #f8f8f8;
+    background-color: var(--bg);
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
-	border-left: 3px solid #e7e7e7;
+	border-left: 30px solid (--border);
 	margin-left: 20vw;
 }
 
 .grid > :nth-child(3) {
-  	border-right: 3px solid #e7e7e7;
-    background-color: #f8f8f8;
+  	border-right: 3px solid (--border);
+    background-color: var(--bg);
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
 	
@@ -86,7 +91,7 @@ body{
 .post {
     min-width: 600px;
 	margin: 1vh 2vw;
-	border: solid 2px #e3e3e3;
+	border: solid 2px var(--border);
 	border-radius: 15px;
     background-color: #dce6f2;
 }
@@ -133,6 +138,7 @@ body{
 }
 
 .panel {
+	background-color: white;
     margin: 1vh 2vh 1vw 0;
     border: solid 2px #bce8f1;
     border-radius: 10px;
@@ -149,6 +155,7 @@ body{
 }
 
 .panel-2 {
+	background-color: white;
     margin: 1vh 2vh 1vw 0;
     border: solid 2px #f2dede;
     border-radius: 10px;

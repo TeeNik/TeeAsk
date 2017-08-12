@@ -2,7 +2,7 @@
 .question {
     min-width: 600px;
 	margin: 1vh 2vw;
-	border: solid 2px #e3e3e3;
+	border: solid 2px var(--border);
 	border-radius: 15px;
     background-color: transparent;
 }
@@ -10,7 +10,7 @@
 .answer {
     min-width: 600px;
 	margin: 1vh 2vw;
-	border: solid 2px #e3e3e3;
+	border: solid 2px var(--border);
 	border-radius: 15px;
     background-color: white;
 }
@@ -22,7 +22,8 @@
 }
 
 .post-text {
-    margin-left: 16%;
+	margin-top: 15px;
+    margin-left: 20%;
     margin-right: 2vw;
 }
 
