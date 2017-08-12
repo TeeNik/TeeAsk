@@ -10,7 +10,7 @@ body{
   width: 100%;
   height: 100%;
   
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 10fr 5fr;
 
   grid-template-rows: [header-top] 10vh [header-bottom  main-top] auto [main-bottom];
 
@@ -26,6 +26,8 @@ body{
   
     grid-row-start: header-top;
     grid-row-end: header-bottom;
+	
+	border-bottom: 3px solid #e7e7e7;
 }
 
 .grid > :nth-child(2) {  
@@ -33,12 +35,12 @@ body{
     background-color: #f8f8f8;
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
-	
+	border-left: 3px solid #e7e7e7;
 	margin-left: 20vw;
 }
 
 .grid > :nth-child(3) {
-  
+  	border-right: 3px solid #e7e7e7;
     background-color: #f8f8f8;
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
@@ -55,10 +57,11 @@ body{
 }
 
 .search {
-    width: 15vw;
+	height: 30px;
+    width: 20vw;
     font-size: 18px;
     float: left;
-    margin-top: 4vh;
+    margin-top: 3vh;
     margin-left: 4vw;
     border-radius: 5px;
     
@@ -81,7 +84,7 @@ body{
 }
 
 .post {
-    min-width: 800px;
+    min-width: 600px;
 	margin: 1vh 2vw;
 	border: solid 2px #e3e3e3;
 	border-radius: 15px;
