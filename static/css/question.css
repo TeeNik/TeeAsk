@@ -1,0 +1,59 @@
+
+.question {
+    min-width: 600px;
+	margin: 1vh 2vw;
+	border: solid 2px #e3e3e3;
+	border-radius: 15px;
+    background-color: transparent;
+}
+
+.answer {
+    min-width: 600px;
+	margin: 1vh 2vw;
+	border: solid 2px #e3e3e3;
+	border-radius: 15px;
+    background-color: white;
+}
+
+.post-pic {
+    padding-left: 1.5vw;
+    padding-top: 1.5vw;
+    float: left;
+}
+
+.post-text {
+    margin-left: 16%;
+    margin-right: 2vw;
+}
+
+.post-img {
+    width: 4vw;
+    height: 4vw;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 10px;
+}
+
+.rating-text{
+    font-size: 3vh;
+    padding-bottom: 20px;
+}
+
+.rating-img {
+    cursor: pointer;
+    max-width: 70px;
+    width: 7vw;
+    height: 3vh;
+}
+
+.block{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.avatar {
+	width: 4vw;
+	height: 4vw;
+}
+
+
