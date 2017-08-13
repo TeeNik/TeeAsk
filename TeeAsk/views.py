@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.shortcuts import render_to_response
 from .forms import *
 
 
 def index(request):
     title = 'TeeAsk'
-    form = RegistrationForm(request.POST or None)
-    return render_to_response('index.html', locals())
+    posts = Post.objects.all()
+    return render(request, 'index.html', locals())
 
 def login(request):
     title = 'TeeAsk'
@@ -14,9 +13,13 @@ def login(request):
     reg_form = RegistrationForm(request.POST or None)
 
     if request.method == 'POST' and login_form.is_valid():
+        print(1)
         print(login_form)
 
     if request.method == 'POST' and reg_form.is_valid():
+        print(2)
         print(reg_form)
+        new_form = reg_form.save()
 
-    return  render_to_response('login.html', locals())
+
+    return render(request, 'login.html', locals())
