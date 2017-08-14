@@ -21,5 +21,4 @@ def login(request):
         print(reg_form)
         new_form = reg_form.save()
 
-
     return render(request, 'login.html', locals())

@@ -38,6 +38,13 @@ class Like(models.Model):
     def __str__(self):
         return self.user
 
+class Tag(models.Model):
+    name = models.CharField(max_length=30, default=None)
+
+    def __str__(self):
+        return self.name
+
+
 
 
 

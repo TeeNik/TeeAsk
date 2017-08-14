@@ -1,6 +1,6 @@
 :root {
-  --bg: #f5f5f5; 
-  --border: #a8a8a8;	
+  --bg: rgb(237, 237, 238);
+  --border: #a8a8a8;
 }
 
 html {
@@ -43,12 +43,14 @@ body{
     background-color: var(--bg);
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
-	border-left: 30px solid (--border);
+    border-left: 3px solid var(--border);
+);
 	margin-left: 20vw;
 }
 
 .grid > :nth-child(3) {
-  	border-right: 3px solid (--border);
+    border-right: 3px solid var(--border);
+);
     background-color: var(--bg);
     grid-row-start: header-bottom;
     grid-row-end: main-bottom;
@@ -106,7 +108,7 @@ body{
 }
 
 .post-text {
-    margin-left: 16%;
+    margin-left: 20%;
     margin-right: 2vw;
 }
 
