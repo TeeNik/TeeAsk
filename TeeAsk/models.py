@@ -1,17 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User, UserManager
 
-class User(models.Model):
-    username = models.CharField(max_length=25)
-    password = models.CharField(max_length=25)
-    email = models.EmailField()
+
+class Profile(User):
     avatar = models.ImageField()
+    objects = UserManager()
 
     def __str__(self):
         return self.username
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, default=None)
+    author = models.ForeignKey(Profile, default=None)
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     title = models.TextField()
     text = models.TextField()
@@ -23,7 +23,7 @@ class Post(models.Model):
 
 
 class Answer(models.Model):
-    author = models.ForeignKey(User, default=None)
+    author = models.ForeignKey(Profile, default=None)
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     text = models.TextField()
     likes = models.IntegerField()
@@ -32,7 +32,7 @@ class Answer(models.Model):
         return self.text
 
 class Like(models.Model):
-    user = models.ForeignKey(User, default=None)
+    user = models.ForeignKey(Profile, default=None)
     value = models.IntegerField(default=0)
 
     def __str__(self):

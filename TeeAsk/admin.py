@@ -2,10 +2,10 @@ from django.contrib import admin
 from .models import *
 
 
-class UserAdmin (admin.ModelAdmin):
-    list_display = [field.name for field in User._meta.fields]
+class ProfileAdmin (admin.ModelAdmin):
+    list_display = [field.name for field in Profile._meta.fields]
     class Meta:
-        model = User
+        model = Profile
 
 class PostAdmin (admin.ModelAdmin):
     list_display = [field.name for field in Post._meta.fields]
@@ -24,7 +24,7 @@ class LikeAdmin (admin.ModelAdmin):
 
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Like, LikeAdmin)
 admin.site.register(Answer, AnswerAdmin)
