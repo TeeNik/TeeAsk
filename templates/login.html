@@ -30,7 +30,7 @@
 				<li class="tab"><a href="#login">Log In</a></li>
 			</ul>
 			<div class="tab-content">
-				<div id="signup">
+				<!--<div id="signup">
 					<h1>Sign Up for Free</h1>
 					<form method="post"> {% csrf_token %}
 						<div class="field-wrap">
@@ -45,13 +45,13 @@
 							{{ reg_form.password }} </div>
 						<button type="submit" class="button button-block" />Get Started</button>
 					</form>
-				</div>
+				</div>-->
 				<div id="login">
 					<h1>Welcome Back!</h1>
 					<form method="post"> {% csrf_token %}
 						<div class="field-wrap">
-							<label> Email Address<span class="req">*</span> </label>
-							{{ login_form.email }} </div>
+							<label> Username<span class="req">*</span> </label>
+							{{ login_form.username }} </div>
 						<div class="field-wrap">
 							<label> Password<span class="req">*</span> </label>
 							{{ login_form.password }}</div>

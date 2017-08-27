@@ -82,7 +82,12 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'TeeAsk.auth_backend.ProfileModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
+CUSTOM_USER_MODEL = 'TeeAsk.Profile'
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

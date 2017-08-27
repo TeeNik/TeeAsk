@@ -4,9 +4,8 @@ from .models import *
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ["avatar"]
+        fields = ["email", "username", "password"]
 
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['username', 'avatar']
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Nombre de usuario')
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
