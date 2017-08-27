@@ -14,12 +14,12 @@
         <div>
             <img src="../static/img/newlogo.png" class="logo" onclick="location.href = 'localhost:8000'">
             <input type="text" class='search' placeholder="Мы найдём! Только попроси...">
-            {% if user.is_authed %}
-            <button class="header-button-right" onclick="location.href += 'login/'">Log out</button>
+            {% if user.username %}
+            <button class="header-button-right" onclick="location.href = '/logout'">Log out</button>
             <button class="header-button-right">Settings</button>
             {%  else %}
             <button class="header-button-right" onclick="location.href += 'login/'">Sing up</button>
-            <button class="header-button-right">Log in</button>
+            <button class="header-button-right" >Log in</button>
             {%  endif %}
             <img src='../static/img/jc.png' class="header-button-right">
         </div>

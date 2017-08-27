@@ -88,6 +88,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CUSTOM_USER_MODEL = 'TeeAsk.Profile'
+
+LOGIN_REDIRECT_URL = '/'
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

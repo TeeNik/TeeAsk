@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from .forms import *
 
 
@@ -13,17 +13,13 @@ def login_page(request):
     login_form = LoginForm(request.POST or None)
     reg_form = RegistrationForm(request.POST or None)
 
-    print(login_form)
     if request.method == 'POST':
-        print ("form is valid or not", login_form.is_valid())
-        print(login_form.errors)
         if login_form.is_valid():
             user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
             #user = authenticate(username="teenik", password="starcraft2")
-            print(login_form.cleaned_data)
             if user is not None:
-                print(user.email)
                 login(request, user)
+                return redirect('/', user)
 
     if request.method == 'POST' and reg_form.is_valid():
         print(2)
@@ -31,3 +27,7 @@ def login_page(request):
         new_form = reg_form.save()
 
     return render(request, 'login.html', locals())
+
+def logout_page(request):
+    logout(request)
+    return redirect('/', {})
