@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^login/', views.login_page),
     url(r'^logout/', views.logout_page),
+    url(r'^like/', views.like),
 ]

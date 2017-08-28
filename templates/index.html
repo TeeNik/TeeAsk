@@ -25,7 +25,7 @@
         </div>
         <div class='center'>
             {% for p in posts %}
-                <div class="post">
+                <div class="post" id="post_id-{{ p.id }}">
                     <div class="post-pic">
                         <img class='post-img' src="../static/img/jc.png" />
                     </div>
@@ -38,7 +38,7 @@
                         <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
 
                         <div>
-                            <img class="rating-img" src="../static/img/lois.png">
+                            <img class="rating-img" id='like' src="../static/img/lois.png">
                             <font size='7' color='red'>{{ p.likes }}</font>
                             <img class="rating-img" src="../static/img/dislois.png">
                         </div>
@@ -74,6 +74,25 @@
             
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $('#like').click(function () {
+            $.ajax({
+               type: "POST",
+               url: "{% url 'like' %}",
+               data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      alert(response.message);
+                      alert('Company likes count is now ' + response.likes_count);
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+            });
+            alert()
+        });
+    </script>
 </body>
 
 </html>
