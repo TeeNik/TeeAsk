@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, UserManager
 
 
 class Profile(User):
-    avatar = models.ImageField()
+    avatar = models.ImageField(default='default.png')
     objects = UserManager()
 
     def __str__(self):
@@ -33,6 +33,7 @@ class Answer(models.Model):
 
 class Like(models.Model):
     user = models.ForeignKey(Profile, default=None)
+    post = models.ForeignKey(Post, default=None)
     value = models.IntegerField(default=0)
 
     def __str__(self):

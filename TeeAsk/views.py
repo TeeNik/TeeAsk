@@ -34,9 +34,13 @@ def logout_page(request):
     logout(request)
     return redirect('/', {})
 
-@login_required
 def like(request):
-    message = 'you just clicked'
+    id = request.GET['id']
+    new_like, created = Like.objects.get_or_create(user=request.user, post=Post.objects.get(id=id))
+    if not created:
+        print('created')
+    else:
+        print('not created')
     likes_count = 5
-    return HttpResponse(locals())
+    return HttpResponse(likes_count)
 
