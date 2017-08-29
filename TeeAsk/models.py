@@ -36,8 +36,8 @@ class Like(models.Model):
     post = models.ForeignKey(Post, default=None)
     value = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.id
+    def __unicode__(self):
+        return str(self.id)
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, default=None)

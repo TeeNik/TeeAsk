@@ -45,7 +45,10 @@ def like(request):
         print('already created')
     else:
         print('create new')
-        Post.objects.get(id=id).likes += 1
+        print(Post.objects.get(id=id).likes)
+        post = Post.objects.get(id=id)
+        post.likes += 1
+        post.save()
     likes_count = 5
     return HttpResponse(likes_count)
 
