@@ -7,5 +7,5 @@ class RegistrationForm(forms.ModelForm):
         fields = ["email", "username", "password"]
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Nombre de usuario')
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    username = forms.CharField(label='usrbnm')
+    password = forms.CharField(label='pswrd', widget=forms.PasswordInput)

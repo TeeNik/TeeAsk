@@ -6,7 +6,7 @@ class Profile(User):
     avatar = models.ImageField(default='default.png')
     objects = UserManager()
 
-    def __str__(self):
+    def __unicode__(self):
         return self.username
 
 
@@ -16,9 +16,9 @@ class Post(models.Model):
     title = models.TextField()
     text = models.TextField()
     answers = models.IntegerField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
 
@@ -28,7 +28,7 @@ class Answer(models.Model):
     text = models.TextField()
     likes = models.IntegerField()
 
-    def __str__(self):
+    def __unicode__(self):
         return self.text
 
 class Like(models.Model):
@@ -37,12 +37,12 @@ class Like(models.Model):
     value = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user
+        return self.id
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, default=None)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 

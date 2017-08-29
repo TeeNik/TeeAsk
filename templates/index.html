@@ -76,8 +76,9 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        $('#like').click(function () {
-            $.get('/like', {}, function (data) {
+        $('[id^="like"]').click(function () {
+            let id = $(this).closest("div.post").attr("id").split('-')[1];
+            $.get('/like', {'id':id}, function (data) {
                 alert(data);
             });
         });

@@ -36,11 +36,16 @@ def logout_page(request):
 
 def like(request):
     id = request.GET['id']
+    print(321)
+    print(id);
+    print(request.user)
     new_like, created = Like.objects.get_or_create(user=request.user, post=Post.objects.get(id=id))
+    print(created)
     if not created:
-        print('created')
+        print('already created')
     else:
-        print('not created')
+        print('create new')
+        Post.objects.get(id=id).likes += 1
     likes_count = 5
     return HttpResponse(likes_count)
 
