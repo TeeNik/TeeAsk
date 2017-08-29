@@ -8,6 +8,8 @@ from .forms import *
 def index(request):
     title = 'TeeAsk'
     posts = Post.objects.all()
+    likes = Like.objects.filter(user=request.user).values_list("post")
+    print(likes[0][0])
     return render(request, 'index.html', locals())
 
 def login_page(request):
