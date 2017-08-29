@@ -38,16 +38,24 @@ def like(request):
     id = request.GET['id']
     value = request.GET['value']
     new_like, created = Like.objects.get_or_create(user=request.user, post=Post.objects.get(id=id))
+    post = Post.objects.get(id=id)
     if not created:
         print('already created')
+        like = Like.objects.get(user=request.user, post=post)
+        if int(like.value) != int(value):
+            if int(value) > 0:
+                post.likes += 2
+            else:
+                post.likes -= 2
+            like.value = value
+            like.save()
+            post.save()
     else:
         print('create new')
         new_like.value = value
-        print(new_like.value)
         new_like.save()
-        post = Post.objects.get(id=id)
-        post.likes += 1
+        post.likes += int(value)
         post.save()
-    likes_count = 5
+    likes_count = post.likes
     return HttpResponse(likes_count)
 
