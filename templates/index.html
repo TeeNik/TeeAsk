@@ -39,8 +39,14 @@
 
                         <div>
                             <img class="rating-img" id='like' src="../static/img/lois.png">
-                            <font size='7' color='red'>{{ p.likes }}</font>
-                            <img class="rating-img" src="../static/img/dislois.png">
+
+                            {% if p.likes >= 0 %}
+                                <font size='7' color='green'>{{ p.likes }}</font>
+                            {% else %}
+                                <font size='7' color='red'>{{ p.likes }}</font>
+                            {% endif %}
+
+                            <img class="rating-img" id='dislike' src="../static/img/dislois.png">
                         </div>
 
                     </div>
@@ -78,7 +84,13 @@
     <script>
         $('[id^="like"]').click(function () {
             let id = $(this).closest("div.post").attr("id").split('-')[1];
-            $.get('/like', {'id':id}, function (data) {
+            $.get('/like', {'id':id, 'value':1}, function (data) {
+                alert(data);
+            });
+        });
+        $('[id^="dislike"]').click(function () {
+            let id = $(this).closest("div.post").attr("id").split('-')[1];
+            $.get('/like', {'id':id, 'value':-1}, function (data) {
                 alert(data);
             });
         });

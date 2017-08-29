@@ -36,16 +36,15 @@ def logout_page(request):
 
 def like(request):
     id = request.GET['id']
-    print(321)
-    print(id);
-    print(request.user)
+    value = request.GET['value']
     new_like, created = Like.objects.get_or_create(user=request.user, post=Post.objects.get(id=id))
-    print(created)
     if not created:
         print('already created')
     else:
         print('create new')
-        print(Post.objects.get(id=id).likes)
+        new_like.value = value
+        print(new_like.value)
+        new_like.save()
         post = Post.objects.get(id=id)
         post.likes += 1
         post.save()
