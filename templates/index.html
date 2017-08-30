@@ -1,29 +1,7 @@
+{% extends "base.html" %}
 {%  load staticfiles %}
-<!DOCTYPE HTML>
 
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title> {{ title }} </title>
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css?v=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
-</head>
-
-<body>
-    <div class="grid">
-        <div>
-            <img src="../static/img/newlogo.png" class="logo" onclick="location.href = 'localhost:8000'">
-            <input type="text" class='search' placeholder="Мы найдём! Только попроси...">
-            {% if user.username %}
-            <button class="header-button-right" onclick="location.href = '/logout'">Log out</button>
-            <button class="header-button-right">Settings</button>
-            {%  else %}
-            <button class="header-button-right" onclick="location.href += 'login/'">Sing up</button>
-            <button class="header-button-right" >Log in</button>
-            {%  endif %}
-            <img src='../static/img/jc.png' class="header-button-right">
-        </div>
+    {% block center %}
         <div class='center'>
             {% for p in posts %}
                 <div class="post" id="post_id-{{ p.id }}">
@@ -55,53 +33,24 @@
             {% endfor %}
 
         </div>
-        <div>
-            <div class='panel'>
-                <div class='panel-head'>
-                    #Tags
-                </div>
-                <div class="panel-body">
-                    stupid questions cartoons 
-                    games askYan 
-                    RELATIONSHIPS 
-                    c++
-                </div>
-            </div>
-            
-            <div class='panel-2'>
-                <div class='panel-head-2'>
-                    #Cytest Members
-                </div>
-                <div class="panel-body">
-                    TheSlave Homer 
-                    Me TheGodess 
-                    KIM Neo Ms. Lollipop 
-                </div>
-            </div>
+    {% endblock %}
 
-            <div>
-                <button class='question-button'>Задать вопрос</button>
-            </div>
-
-            
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        $('[id^="like"]').click(function () {
-            let id = $(this).closest("div.post").attr("id").split('-')[1];
-            $.get('/like', {'id':id, 'value':1}, function (data) {
-                console.log($(this).closest());
-                $(this).closest(".score").innerText = data;
+    {% block scripts %}
+        <script>
+            $('[id^="like"]').click(function () {
+                let id = $(this).closest("div.post").attr("id").split('-')[1];
+                $.get('/like', {'id':id, 'value':1}, function (data) {
+                    console.log($(this).closest());
+                    $(this).closest(".score").innerText = data;
+                });
             });
-        });
-        $('[id^="dislike"]').click(function () {
-            let id = $(this).closest("div.post").attr("id").split('-')[1];
-            $.get('/like', {'id':id, 'value':-1}, function (data) {
-                $(this).closest(".score").text(data)
+            $('[id^="dislike"]').click(function () {
+                let id = $(this).closest("div.post").attr("id").split('-')[1];
+                $.get('/like', {'id':id, 'value':-1}, function (data) {
+                    $(this).closest(".score").text(data)
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    {% endblock %}
 
-</html>
+
