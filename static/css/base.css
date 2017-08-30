@@ -173,6 +173,7 @@ body{
 }
 
 .question-button {
+    max-width: 100px;
     font-size: 1em;
     font-family: 'Fira Sans', sans-serif;
     width: 20vw;
