@@ -171,3 +171,14 @@ body{
     padding: 1vh 1vw;
     background-color: #f2dede;
 }
+
+.question-button {
+    font-size: 1em;
+    font-family: 'Fira Sans', sans-serif;
+    width: 20vw;
+    height: 5vh;
+    background-color: white;
+    margin: 1vh 2vh 1vw 0;
+    border: solid 2px #bce8f1;
+    border-radius: 10px;
+}
