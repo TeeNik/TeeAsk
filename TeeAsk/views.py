@@ -36,6 +36,12 @@ def logout_page(request):
     logout(request)
     return redirect('/', {})
 
+def new_question(request):
+    ques_form = QuestionForm(request.POST or None)
+    if request.user is None:
+        return redirect('/', {})
+    return render(request, 'new_question.html', locals())
+
 def like(request):
     id = request.GET['id']
     value = request.GET['value']

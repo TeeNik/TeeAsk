@@ -9,3 +9,8 @@ class RegistrationForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label='usrbnm')
     password = forms.CharField(label='pswrd', widget=forms.PasswordInput)
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title','text']
