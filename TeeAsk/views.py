@@ -8,7 +8,12 @@ from .forms import *
 
 def index(request):
     title = 'TeeAsk'
-    posts = Post.objects.all()
+
+    us = request.GET.get('user')
+    if us is not None:
+        posts = Post.objects.get(author=us)
+    else:
+        posts = Post.objects.all()
     #likes = Like.objects.filter(user=request.user).values_list('post')
     #print(likes[0][0])
     return render(request, 'index.html', locals())
@@ -43,13 +48,13 @@ def new_question(request):
         return redirect('/', {})
     return render(request, 'new_question.html', locals())
 
+
 def like(request):
     id = request.GET['id']
     value = request.GET['value']
     new_like, created = Like.objects.get_or_create(user=request.user, post=Post.objects.get(id=id))
     post = Post.objects.get(id=id)
     if not created:
-        print('already created')
         like = Like.objects.get(user=request.user, post=post)
         if int(like.value) != int(value):
             if int(value) > 0:
@@ -60,7 +65,6 @@ def like(request):
             like.save()
             post.save()
     else:
-        print('create new')
         new_like.value = value
         new_like.save()
         post.likes += int(value)

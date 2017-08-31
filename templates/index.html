@@ -13,7 +13,7 @@
                             {{ p.title }}
                         </h2>
                         {{ p.text }}
-                        <p>Вопрос задан пользователем: {{ p.author }}</p>
+                        <p>Вопрос задан пользователем: <font id="user_anchor" href="">{{ p.author }}</font></p>
                         <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
 
                         <div>
@@ -37,6 +37,13 @@
 
     {% block scripts %}
         <script>
+            $('[id^="user_anchor"]').click(function(){
+                var name = $(this).text();
+                $.get('/', {'user':name}, function () {
+                    console.log(12312343);
+                });
+            });
+
             $('[id^="like"]').click(function () {
                 let id = $(this).closest("div.post").attr("id").split('-')[1];
                 $.get('/like', {'id':id, 'value':1}, function (data) {
