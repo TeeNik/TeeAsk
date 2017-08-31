@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -65,5 +66,6 @@ def like(request):
         post.likes += int(value)
         post.save()
     likes_count = post.likes
-    return HttpResponse(likes_count)
+    ctx = {'id':id, 'like':likes_count}
+    return HttpResponse(json.dumps(ctx), content_type='application/json')
 
