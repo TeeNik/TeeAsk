@@ -16,7 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="grid">
     <div>
-        <img src="../static/img/newlogo.png" class="logo" onclick="location.href = 'localhost:8000'">
+        <a href="../../"><img src="../static/img/newlogo.png" class="logo" ></a>
         <input type="text" class='search' placeholder="Мы найдём! Только попроси...">
         {% if user.username %}
             <button class="header-button-right" onclick="location.href = '/logout'">Log out</button>

@@ -1,6 +1,9 @@
+import simplejson as simplejson
 from django.contrib.auth.decorators import login_required
 import json
-from django.http import HttpResponse
+
+from django.core import serializers
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
@@ -9,14 +12,20 @@ from .forms import *
 def index(request):
     title = 'TeeAsk'
 
-    us = request.GET.get('user')
-    if us is not None:
-        posts = Post.objects.get(author=us)
+    id = request.GET.get('id')
+    posts = None
+    if id is not None:
+        post = Post.objects.get(id=id)
+        posts = Post.objects.filter(author=post.author)
+        #data = serializers.serialize('json', posts);
+        #return HttpResponse(data, content_type="application/json")
+        return render(request, 'index.html', locals())
     else:
         posts = Post.objects.all()
+        return render(request, 'index.html', locals())
     #likes = Like.objects.filter(user=request.user).values_list('post')
     #print(likes[0][0])
-    return render(request, 'index.html', locals())
+
 
 def login_page(request):
     title = 'TeeAsk'
