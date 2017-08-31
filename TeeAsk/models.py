@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, UserManager
+from taggit.managers import TaggableManager
 
 
 class Profile(User):
@@ -17,6 +18,7 @@ class Post(models.Model):
     text = models.TextField()
     answers = models.IntegerField()
     likes = models.IntegerField(default=0)
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.title
