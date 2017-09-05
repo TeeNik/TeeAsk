@@ -56,16 +56,10 @@ def new_question(request):
 
     if request.method == 'POST':
         if ques_form.is_valid():
-
             data = ques_form.cleaned_data
-            print(data)
-
-            print(request.user)
-            print(User.objects.get(username=request.user).id)
             post = Post.objects.create(author=Profile.objects.get(username=request.user))
             post.title = data['title']
             post.text = data['text']
-            #post.author = User.objects.get(username=request.user).id
             post.save()
 
 
