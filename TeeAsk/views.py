@@ -56,10 +56,13 @@ def new_question(request):
 
     if request.method == 'POST':
         if ques_form.is_valid():
-            user = authenticate(username=ques_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
-            if user is not None:
-                login(request, user)
-                return redirect('/', user)
+            post = Post.objects.create()
+            data = ques_form.cleaned_data
+            print(data)
+            post.title = data['title']
+            post.text = data['text']
+            post.author = request.user
+            post.save()
 
 
     return render(request, 'new_question.html', locals())

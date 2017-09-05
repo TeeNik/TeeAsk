@@ -16,7 +16,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     title = models.TextField()
     text = models.TextField()
-    answers = models.IntegerField()
+    answers = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     tags = TaggableManager()
 
