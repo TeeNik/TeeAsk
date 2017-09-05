@@ -1,4 +1,3 @@
-import simplejson as simplejson
 from django.contrib.auth.decorators import login_required
 import json
 
@@ -35,7 +34,6 @@ def login_page(request):
     if request.method == 'POST':
         if login_form.is_valid():
             user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
-            #user = authenticate(username="teenik", password="starcraft2")
             if user is not None:
                 login(request, user)
                 return redirect('/', user)
@@ -55,6 +53,15 @@ def new_question(request):
     ques_form = QuestionForm(request.POST or None)
     if request.user is None:
         return redirect('/', {})
+
+    if request.method == 'POST':
+        if ques_form.is_valid():
+            user = authenticate(username=ques_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
+            if user is not None:
+                login(request, user)
+                return redirect('/', user)
+
+
     return render(request, 'new_question.html', locals())
 
 
