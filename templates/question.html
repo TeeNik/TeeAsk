@@ -29,45 +29,30 @@
             </div>
         </div>
 
+        {% for a in answers %}
         <div class="answer">
             <div class="post-pic">
-                <img class='post-img' src="../static/img/jc.png"/>
-                <p>TeeNik</p>
+                <img class='post-img' src={{ a.author.avatar.url }}/>
+                <p>{{ a.author }}</p>
             </div>
             <div class="post-text">
-                Вобщем такое дело. Вчера пацаны в классе говорили о программировании и я чтобы выпендриться сказал, что
-                тоже умею программировать и знаю ассемблер. (на самом деле я конечно ничего не знаю) Так вот теперь меня
-                добавили в конфу программистов. Они спрашивают у меня советы и задают вопросы, а я не знаю, че им
-                отвечать. Подскажите какие-нибудь небольшие книги или может образовательные сайты. Нужно срочно
+                {{ a.text }}
 
                 <div>
-                    <img class="rating-img" src="../static/img/lois.png">
-                    <font size='7' color='red'>5</font>
-                    <img class="rating-img" src="../static/img/dislois.png">
+                    <img class="rating-img" id='like' src="../static/img/lois.png">
+
+                            {% if a.likes >= 0 %}
+                                <font id='score' size='7' color='green'>{{ a.likes }}</font>
+                            {% else %}
+                                <font id='score' size='7' color='red'>{{ a.likes }}</font>
+                            {% endif %}
+
+                            <img class="rating-img" id='dislike' src="../static/img/dislois.png">
                 </div>
 
             </div>
         </div>
-
-        <div class="answer">
-            <div class="post-pic">
-                <img class='post-img' src="../static/img/jc.png"/>
-                <p>TeeNik</p>
-            </div>
-            <div class="post-text">
-                Вобщем такое дело. Вчера пацаны в классе говорили о программировании и я чтобы выпендриться сказал, что
-                тоже умею программировать и знаю ассемблер. (на самом деле я конечно ничего не знаю) Так вот теперь меня
-                добавили в конфу программистов. Они спрашивают у меня советы и задают вопросы, а я не знаю, че им
-                отвечать. Подскажите какие-нибудь небольшие книги или может образовательные сайты. Нужно срочно
-
-                <div>
-                    <img class="rating-img" src="../static/img/lois.png">
-                    <font size='7' color='red'>5</font>
-                    <img class="rating-img" src="../static/img/dislois.png">
-                </div>
-
-            </div>
-        </div>
+        {% endfor %}
 
 
     </div>

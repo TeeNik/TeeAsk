@@ -20,7 +20,7 @@ class Post(models.Model):
     likes = models.IntegerField(default=0)
     tags = TaggableManager()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 

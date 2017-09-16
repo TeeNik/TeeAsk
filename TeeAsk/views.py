@@ -57,7 +57,7 @@ def question(request):
     post = Post.objects.get(id=post_id)
 
     try:
-        answers = Answer.objects.get(post=post)
+        answers = Answer.objects.filter(post=post)
     except Answer.DoesNotExist:
         answers = None
 

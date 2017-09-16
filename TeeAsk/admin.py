@@ -9,11 +9,23 @@ class ProfileAdmin (admin.ModelAdmin):
 
 class PostAdmin (admin.ModelAdmin):
     list_display = [field.name for field in Post._meta.fields]
+
+
+
     class Meta:
         model = Post
 
 class AnswerAdmin (admin.ModelAdmin):
-    list_display = [field.name for field in Answer._meta.fields]
+
+
+    list_display = ['author', 'get_post', 'date', 'text', 'likes']
+
+    def get_post(self, obj):
+        return obj.post.title
+
+    get_post.admin_order_field = 'post'
+    get_post.short_description = 'Post Title'
+
     class Meta:
         model = Answer
 
