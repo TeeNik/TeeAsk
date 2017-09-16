@@ -10,7 +10,7 @@
                     </div>
                     <div class="post-text">
                         <h2>
-                            {{ p.title }}
+                            <a href="/question?post_id={{ p.id }}">{{ p.title }}</a>
                         </h2>
                         {{ p.text }}
                         <p>Вопрос задан пользователем: <a id="user_anchor" href="/?id={{ p.id }}">{{ p.author }}</a></p>

@@ -16,14 +16,14 @@ def index(request):
     if id is not None:
         post = Post.objects.get(id=id)
         posts = Post.objects.filter(author=post.author)
-        #data = serializers.serialize('json', posts);
-        #return HttpResponse(data, content_type="application/json")
+        # data = serializers.serialize('json', posts);
+        # return HttpResponse(data, content_type="application/json")
         return render(request, 'index.html', locals())
     else:
         posts = Post.objects.all()
         return render(request, 'index.html', locals())
-    #likes = Like.objects.filter(user=request.user).values_list('post')
-    #print(likes[0][0])
+        # likes = Like.objects.filter(user=request.user).values_list('post')
+        # print(likes[0][0])
 
 
 def login_page(request):
@@ -33,7 +33,8 @@ def login_page(request):
 
     if request.method == 'POST':
         if login_form.is_valid():
-            user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
+            user = authenticate(username=login_form.cleaned_data["username"],
+                                password=login_form.cleaned_data["password"])
             if user is not None:
                 login(request, user)
                 return redirect('/', user)
@@ -45,12 +46,28 @@ def login_page(request):
 
     return render(request, 'login.html', locals())
 
+
 def logout_page(request):
     logout(request)
     return redirect('/', {})
 
+
+def question(request):
+    post_id = request.GET.get('post_id')
+    post = Post.objects.get(id=post_id)
+
+    try:
+        answers = Answer.objects.get(post=post)
+    except Answer.DoesNotExist:
+        answers = None
+
+    print(answers)
+
+    return render(request, 'question.html', locals())
+
+
 def new_question(request):
-    ques_form = QuestionForm(request.POST or None)
+    ques_form = QuestionForm(initial={'title': 'Заголовок', 'text': 'Текст'})
     if request.user is None:
         return redirect('/', {})
 
@@ -61,7 +78,6 @@ def new_question(request):
             post.title = data['title']
             post.text = data['text']
             post.save()
-
 
     return render(request, 'new_question.html', locals())
 
@@ -87,6 +103,5 @@ def like(request):
         post.likes += int(value)
         post.save()
     likes_count = post.likes
-    ctx = {'id':id, 'like':likes_count}
+    ctx = {'id': id, 'like': likes_count}
     return HttpResponse(json.dumps(ctx), content_type='application/json')
-

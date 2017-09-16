@@ -25,7 +25,7 @@
             <button class="header-button-right" onclick="location.href += 'login/'">Sing up</button>
             <button class="header-button-right">Log in</button>
         {% endif %}
-        <img src='../static/img/jc.png' class="header-button-right">
+        <img src={{ user.avatar.url }} class="header-button-right">
     </div>
     <div class='center'>
         {% block center %}
@@ -56,19 +56,11 @@
         </div>
 
         <div>
-            <button class='question-button'>Задать вопрос</button>
+
             {% if user.username %}
-                <script>
-                    $('button.question-button').click(function () {
-                        location.replace('localhost:8000/new_question/');
-                    });
-                </script>
-            {% else %}
-                <script>
-                    $('button.question-button').click(function () {
-                        location.replace('localhost:8000/login/');
-                    });
-                </script>
+                <form action="/new_question" method="get">
+                    <button class='question-button'>Задать вопрос</button>
+                </form>
             {% endif %}
         </div>
 

@@ -26,6 +26,7 @@ class Post(models.Model):
 
 class Answer(models.Model):
     author = models.ForeignKey(Profile, default=None)
+    post = models.ForeignKey(Post, default=None)
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     text = models.TextField()
     likes = models.IntegerField()
