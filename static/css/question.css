@@ -57,4 +57,9 @@
 	height: 4vw;
 }
 
-
+#id_text {
+    min-width: 600px;
+	margin: 1vh 2vw;
+	border: solid 2px var(--border);
+	border-radius: 15px;
+}

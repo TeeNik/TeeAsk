@@ -29,7 +29,7 @@ class Answer(models.Model):
     post = models.ForeignKey(Post, default=None)
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     text = models.TextField()
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.text

@@ -56,12 +56,17 @@ def question(request):
     post_id = request.GET.get('post_id')
     post = Post.objects.get(id=post_id)
 
+    answer_form = AnswerForm(request.POST or None)
+
     try:
         answers = Answer.objects.filter(post=post)
     except Answer.DoesNotExist:
         answers = None
 
-    print(answers)
+    if request.method == 'POST' and answer_form.is_valid():
+        answer = Answer.objects.create(author=request.user, post=post)
+        answer.text = answer_form.cleaned_data['text']
+        answer.save()
 
     return render(request, 'question.html', locals())
 
