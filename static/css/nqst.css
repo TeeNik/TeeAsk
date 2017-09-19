@@ -35,7 +35,7 @@ body {
 
 .login-img {
     margin-top: 10vh;
-    max-width: 200px;
+    max-width: 270px;
     float: left;
 }
 
@@ -57,15 +57,7 @@ body {
     margin-top: 40px;
 }
 
-
-
 .tab-group {
-    list-style: none;
-    padding: 0;
-    max-height: 90px;
-}
-
-.tab-group:after {
     content: "";
     display: table;
     clear: both;
@@ -89,10 +81,6 @@ body {
 .tab-group li a:hover {
     background: #179b77;
     color: black;
-}
-
-.tab-content > div:last-child {
-    display: none;
 }
 
 h1 {
@@ -125,9 +113,10 @@ input, textarea {
     background-image: none;
     border: 1px solid #a0b3b0;
     color: black;
-    border-radius: 0;
+    border-radius: 10px;
     -webkit-transition: border-color .25s ease, box-shadow .25s ease;
     transition: border-color .25s ease, box-shadow .25s ease;
+    resize: none;
 }
 
 input:focus, textarea:focus {
@@ -137,10 +126,10 @@ input:focus, textarea:focus {
 
 textarea {
     border: 2px solid #a0b3b0;
-    resize: vertical;
 }
 
 #id_title {
+    height: 10vh;
     height: 10vh;
 }
 
@@ -149,26 +138,12 @@ textarea {
     margin-bottom: 40px;
 }
 
-.top-row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.top-row > div {
-    float: left;
-    width: 48%;
-    margin-right: 4%;
-}
-
-.top-row > div:last-child {
-    margin: 0;
-}
-
 .button {
+    display: block;
+    width: 100%;
     border: 0;
     outline: none;
-    border-radius: 0;
+    border-radius: 10px;
     padding: 15px 0;
     font-size: 2rem;
     font-weight: 600;
@@ -183,10 +158,5 @@ textarea {
 
 .button:hover, .button:focus {
     background: #179b77;
-}
-
-.button-block {
-    display: block;
-    width: 100%;
 }
 
