@@ -33,16 +33,24 @@ def login_page(request):
 
     if request.method == 'POST':
         if login_form.is_valid():
+            print(1)
             user = authenticate(username=login_form.cleaned_data["username"],
                                 password=login_form.cleaned_data["password"])
             if user is not None:
                 login(request, user)
                 return redirect('/', user)
 
-    if request.method == 'POST' and reg_form.is_valid():
-        print(2)
-        print(reg_form)
-        new_form = reg_form.save()
+    if request.method == 'POST':
+        if reg_form.is_valid():
+            print(2)
+            user = Profile.objects.create(email=reg_form.cleaned_data["email"], username=reg_form.cleaned_data["username"], password=reg_form.cleaned_data["password"])
+            user.save()
+
+            user = authenticate(username=reg_form.cleaned_data["username"],
+                                password=reg_form.cleaned_data["password"])
+            if user is not None:
+                login(request, user)
+                return redirect('/', user)
 
     return render(request, 'login.html', locals())
 

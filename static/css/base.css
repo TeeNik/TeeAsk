@@ -121,8 +121,13 @@ body {
     border-radius: 10px;
 }
 
+.post a {
+    text-decoration: none;
+    color: blue;
+}
+
 .rating-text {
-    font-size: 3vh;
+    font-size: 2vh;
     padding-bottom: 20px;
 }
 
