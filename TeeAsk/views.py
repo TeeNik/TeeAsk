@@ -32,22 +32,46 @@ def login_page(request):
     reg_form = RegistrationForm(request.POST or None)
 
     if request.method == 'POST':
-        if login_form.is_valid():
-            print(1)
-            user = authenticate(username=login_form.cleaned_data["username"],
-                                password=login_form.cleaned_data["password"])
-            if user is not None:
-                login(request, user)
-                return redirect('/', user)
+        if 'log' in request.POST:
+            if login_form.is_valid():
+                print(1)
+                user = authenticate(username=login_form.cleaned_data["username"],
+                                    password=login_form.cleaned_data["password"])
+                if user is not None:
+                    login(request, user)
+                    return redirect('/', user)
+        else:
+            if reg_form.is_valid():
+                print(2)
+                user = Profile.objects.create(email=reg_form.cleaned_data["email"],
+                                              username=reg_form.cleaned_data["username"],
+                                              password=reg_form.cleaned_data["password"])
+                user.save()
+
+                user = authenticate(username=reg_form.cleaned_data["username"],
+                                    password=reg_form.cleaned_data["password"])
+                if user is not None:
+                    login(request, user)
+                    return redirect('/', user)
+
+    return render(request, 'login.html', locals())
+
+
+def registration(request):
+    title = 'TeeAsk'
+    reg_form = RegistrationForm(request.POST or None)
 
     if request.method == 'POST':
         if reg_form.is_valid():
             print(2)
-            user = Profile.objects.create(email=reg_form.cleaned_data["email"], username=reg_form.cleaned_data["username"], password=reg_form.cleaned_data["password"])
+            user = Profile.objects.create(email=reg_form.cleaned_data["email"],
+                                          username=reg_form.cleaned_data["username"],
+                                          password=reg_form.cleaned_data["password"])
             user.save()
 
             user = authenticate(username=reg_form.cleaned_data["username"],
                                 password=reg_form.cleaned_data["password"])
+
             if user is not None:
                 login(request, user)
                 return redirect('/', user)
