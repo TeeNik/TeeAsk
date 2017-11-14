@@ -58,8 +58,25 @@
 }
 
 #id_text {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px;
+    height: 100px;
     min-width: 600px;
-	margin: 1vh 2vw;
+	margin: 1vh 0.5vw;
 	border: solid 2px var(--border);
 	border-radius: 15px;
+    resize: none;
+}
+
+.panel-3 {
+    background-color: white;
+    margin: 1vh 2vw;
+    border: solid 2px #f2dede;
+    border-radius: 10px;
+}
+
+.panel-head-3 {
+    color: #b04465;
+    padding: 1vh 1vw;
+    background-color: #f2dede;
 }

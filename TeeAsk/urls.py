@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^like/', views.like),
     url(r'^new_question/', views.new_question),
     url(r'^question/', views.question),
+    url(r'^settings/', views.settings),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

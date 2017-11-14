@@ -57,7 +57,7 @@ def login_page(request):
     return render(request, 'login.html', locals())
 
 
-def registration(request):
+def settings(request):
     title = 'TeeAsk'
     reg_form = RegistrationForm(request.POST or None)
 

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block styles %}
-    <link rel="stylesheet" href="../static/css/question.css?v=1.0">
+    <link rel="stylesheet" href="../static/css/question.css?v=1.1">
 {% endblock %}
 
 {% block center %}
@@ -55,24 +55,17 @@
             </div>
         {% endfor %}
 
-        <div class='panel-2'>
-            <div class='panel-head-2'>
+        <div class='panel-3'>
+            <div class='panel-head-3'>
                 Ваше мнение безусловно важно для всех
             </div>
             <div class="panel-body">
                 <div class="field-wrap">
-                    <label> вы<span class="req">*</span> </label>
                     {{ answer_form.text }} </div>
                 <button class="button button-block"/>
                 Отправить</button>
             </div>
         </div>
-        <div>
-            <form method="post"> {% csrf_token %}
-
-            </form>
-        </div>
-
 
     </div>
 {% endblock %}

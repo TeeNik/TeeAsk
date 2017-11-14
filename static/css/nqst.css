@@ -129,8 +129,12 @@ textarea {
 }
 
 #id_title {
+    placeholder: 'Заголовок';
     height: 10vh;
     height: 10vh;
+}
+#id_title::placeholder{
+    text
 }
 
 .field-wrap {
