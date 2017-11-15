@@ -13,14 +13,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='pswrd', widget=forms.PasswordInput)
 
 class QuestionForm(forms.ModelForm):
-    title = forms.CharField()
-    text = forms.CharField()
-    #class Meta:
-    #    model = Post
-     #   fields = ['title', 'text']
+    class Meta:
+        model = Post
+        fields = ['title', 'text']
 
 
 class AnswerForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Answer
         fields = ['text']

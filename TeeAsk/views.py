@@ -76,7 +76,7 @@ def settings(request):
                 login(request, user)
                 return redirect('/', user)
 
-    return render(request, 'login.html', locals())
+    return render(request, 'setting.html', locals())
 
 
 def logout_page(request):
@@ -120,6 +120,7 @@ def new_question(request):
             post.text = data['text']
             post.save()
         else:
+            print(ques_form.is_bound)
             print(ques_form.errors)
 
     return render(request, 'new_question.html', locals())
