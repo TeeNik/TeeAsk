@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block styles %}
-    <link rel="stylesheet" href="../static/css/question.css?v=1.1">
+    <link rel="stylesheet" href="../static/css/question.css?v=1.2">
 {% endblock %}
 
 {% block center %}
@@ -60,10 +60,12 @@
                 Ваше мнение безусловно важно для всех
             </div>
             <div class="panel-body">
-                <div class="field-wrap">
-                    {{ answer_form.text }} </div>
-                <button class="button button-block"/>
-                Отправить</button>
+                <form method="post"> {% csrf_token %}
+                    <div class="field-wrap">
+                        {{ answer_form.text }}
+                    </div>
+                    <button type="submit" id='ques-button' class="button button-block"/>Отправить</button>
+                </form>
             </div>
         </div>
 

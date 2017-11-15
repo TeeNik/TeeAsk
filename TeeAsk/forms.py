@@ -12,15 +12,12 @@ class LoginForm(forms.Form):
     username = forms.CharField(label='usrbnm')
     password = forms.CharField(label='pswrd', widget=forms.PasswordInput)
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label='usrbnm')
-    password = forms.CharField(label='pswrd', widget=forms.PasswordInput)
-
-
 class QuestionForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'text']
+    title = forms.CharField()
+    text = forms.CharField()
+    #class Meta:
+    #    model = Post
+     #   fields = ['title', 'text']
 
 
 class AnswerForm(forms.ModelForm):

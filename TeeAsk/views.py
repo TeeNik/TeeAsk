@@ -95,10 +95,14 @@ def question(request):
     except Answer.DoesNotExist:
         answers = None
 
-    if request.method == 'POST' and answer_form.is_valid():
-        answer = Answer.objects.create(author=request.user, post=post)
-        answer.text = answer_form.cleaned_data['text']
-        answer.save()
+    if request.method == 'POST':
+        if answer_form.is_valid():
+            answer = Answer.objects.create(author=request.user, post=post)
+            answer.text = answer_form.cleaned_data['text']
+            answer.save()
+        else:
+            print(answer_form.errors)
+            print('en')
 
     return render(request, 'question.html', locals())
 
@@ -115,6 +119,8 @@ def new_question(request):
             post.title = data['title']
             post.text = data['text']
             post.save()
+        else:
+            print(ques_form.errors)
 
     return render(request, 'new_question.html', locals())
 

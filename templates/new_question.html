@@ -15,7 +15,8 @@
             <div class="tab-content">
                 <div id="login">
                     <h1></h1>
-                    <form method="post"> {% csrf_token %}
+                    <form method="post"> {% csrf_token %}{{ form.errors }}
+                    {{ form.non_field_errors }}
                         <div class="field-wrap">
                             {{ ques_form.title }} </div>
                         <div class="field-wrap">

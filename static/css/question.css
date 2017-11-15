@@ -68,6 +68,16 @@
     resize: none;
 }
 
+#ques-button{
+    height: 4vh;
+    width: 120px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid cadetblue 2px;
+    font-family: 'Fira Sans', sans-serif;
+    margin-left: 6px;
+}
+
 .panel-3 {
     background-color: white;
     margin: 1vh 2vw;
