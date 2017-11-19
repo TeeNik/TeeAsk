@@ -136,6 +136,7 @@ body {
     max-width: 70px;
     width: 7vw;
     height: 3vh;
+    filter: grayscale(100%);
 }
 
 .block {

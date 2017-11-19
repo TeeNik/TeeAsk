@@ -108,20 +108,22 @@ def question(request):
 
 
 def new_question(request):
+
+    print('HERE')
+
     ques_form = QuestionForm(initial={'title': 'Заголовок', 'text': 'Текст'})
     if request.user is None:
         return redirect('/', {})
 
     if request.method == 'POST':
-        if ques_form.is_valid():
-            data = ques_form.cleaned_data
-            post = Post.objects.create(author=Profile.objects.get(username=request.user))
-            post.title = data['title']
-            post.text = data['text']
-            post.save()
-        else:
-            print(ques_form.is_bound)
-            print(ques_form.errors)
+        print(2)
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        post = Post.objects.create(author=Profile.objects.get(username=request.user))
+        post.title = title
+        post.text = text
+        post.save()
+        return redirect('/', request.user)
 
     return render(request, 'new_question.html', locals())
 

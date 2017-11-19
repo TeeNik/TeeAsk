@@ -15,14 +15,14 @@
             <div class="tab-content">
                 <div id="login">
                     <h1></h1>
-                    <form method="post"> {% csrf_token %}
+                    <form id='nq-form' method="post"> {% csrf_token %}
                         <div class="field-wrap">
                             {{ ques_form.title }}
                         </div>
                         <div class="field-wrap">
                             {{ ques_form.text}}
                         </div>
-                        <button type="submit" class="button button-block"/>
+                        <button id='nq-button' class="button button-block"/>
                         Готово</button>
                     </form>
                 </div>
@@ -33,4 +33,17 @@
 
 {% block scripts %}
     <script src="../static/js/index.js"></script>
+    <script>
+        $('#nq-form').submit(function (e) {
+            e.preventDefault();
+            let title = $('#id_title').val();
+            let text = $('#id_text').val();
+
+            /*$.post('/new_question/', {'title':title, 'text':text, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function (data) {
+                console.log(123123);
+            });*/
+        });
+    </script>
+
+
 {% endblock %}
