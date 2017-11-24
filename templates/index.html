@@ -10,10 +10,10 @@
                     </div>
                     <div class="post-text">
                         <h2>
-                            <a href="/question?post_id={{ p.id }}">{{ p.title }}</a>
+                            <a href="{% url 'get question' p.id %}">{{ p.title }}</a>
                         </h2>
                         {{ p.text }}
-                        <p>Вопрос задан пользователем: <a id="user_anchor" href="/?id={{ p.id }}">{{ p.author }}</a></p>
+                        <p>Вопрос задан пользователем: <a id="user_anchor" href="{% url 'get user posts' p.id%}">{{ p.author }}</a></p>
                         <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
 
                         <div>
@@ -38,13 +38,6 @@
     {% block scripts %}
 
         <script>
-            /*$('[id^="user_anchor"]').click(function(){
-                let id = $(this).closest("div.post").attr("id").split('-')[1];
-                $.get('/', {'id':id}, function (data) {
-                    console.log(data);
-                });
-            });*/
-
             $('[id^="like"]').click(function () {
                 let id = $(this).closest("div.post").attr("id").split('-')[1];
                 $.get('/like', {'id':id, 'value':1}, function (data) {

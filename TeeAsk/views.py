@@ -12,17 +12,16 @@ from .forms import *
 class IndexView(View):
     def get(self, request):
         title = 'TeeAsk'
+        posts = Post.objects.all()
+        return render(request, 'index.html', locals())
 
-        id = request.GET.get('id')
-        posts = None
-        if id is not None:
-            post = Post.objects.get(id=id)
-            posts = Post.objects.filter(author=post.author)
-            return render(request, 'index.html', locals())
-        else:
-            posts = Post.objects.all()
-            return render(request, 'index.html', locals())
 
+class UserPosts(View):
+    def get(self, request, id):
+        title = 'TeeAsk'
+        post = Post.objects.get(id=id)
+        posts = Post.objects.filter(author=post.author)
+        return render(request, 'index.html', locals())
 
 class LoginView(View):
     def get(self, request):
@@ -83,8 +82,8 @@ class LogoutView(View):
         return redirect('/', {})
 
 class QuestionView(View):
-    def get(self, request):
-        post_id = request.GET.get('post_id')
+    def get(self, request, num):
+        post_id = num
         post = Post.objects.get(id=post_id)
 
         answer_form = AnswerForm(request.POST or None)
