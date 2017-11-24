@@ -5,13 +5,15 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+from TeeAsk.views import *
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index),
-    url(r'^login/', views.login_page),
-    url(r'^logout/', views.logout_page),
-    url(r'^like/', views.like),
-    url(r'^new_question/', views.new_question),
-    url(r'^question/', views.question),
-    url(r'^settings/', views.settings),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^$', IndexView.as_view()),
+    url(r'^login/', LoginView.as_view()),
+    url(r'^logout/', LogoutView.as_view()),
+    url(r'^like/', LiveView.as_view()),
+    url(r'^new_question/', NewQuestionView.as_view()),
+    url(r'^question/', QuestionView.as_view()),
+    url(r'^settings/', SettingsView.as_view()),
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
