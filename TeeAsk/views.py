@@ -11,9 +11,19 @@ from .forms import *
 
 class IndexView(View):
     def get(self, request):
+        ques_form = QuestionForm(initial={'title': 'Заголовок', 'text': 'Текст'})
         title = 'TeeAsk'
         posts = Post.objects.all()
         return render(request, 'index.html', locals())
+    def post(self, request):
+        print(1)
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        post = Post.objects.create(author=Profile.objects.get(username=request.user))
+        post.title = title
+        post.text = text
+        post.save()
+        return redirect('/', request.user)
 
 
 class UserPosts(View):
@@ -28,16 +38,18 @@ class LoginView(View):
         title = 'TeeAsk'
         login_form = LoginForm(request.POST or None)
         reg_form = RegistrationForm(request.POST or None)
+        return render(request, 'login.html', locals())
 
-        if request.method == 'POST':
-            if 'log' in request.POST:
-                if login_form.is_valid():
-                    print(1)
-                    user = authenticate(username=login_form.cleaned_data["username"],
-                                        password=login_form.cleaned_data["password"])
-                    if user is not None:
-                        login(request, user)
-                        return redirect('/', user)
+    def post(self, request):
+        login_form = LoginForm(request.POST or None)
+        reg_form = RegistrationForm(request.POST or None)
+        if 'log' in request.POST:
+            if login_form.is_valid():
+                print(1)
+                user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
+                if user is not None:
+                    login(request, user)
+                    return redirect('/', user)
             else:
                 if reg_form.is_valid():
                     print(2)
@@ -51,7 +63,6 @@ class LoginView(View):
                     if user is not None:
                         login(request, user)
                         return redirect('/', user)
-
         return render(request, 'login.html', locals())
 
 class SettingsView(View):
@@ -141,6 +152,12 @@ class LiveView(View):
                 like.value = value
                 like.save()
                 post.save()
+            else:
+                if(int)(value) > 0:
+                    post.likes -= 1
+                else:
+                    post.likes += 1
+                like.delete()
         else:
             new_like.value = value
             new_like.save()

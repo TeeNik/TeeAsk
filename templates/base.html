@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title> {{ title }} </title>
     <link rel="stylesheet" type="text/css" href="../static/css/base.css?v=1.4">
+    <link rel="stylesheet" type="text/css" href="../static/css/modal.css?v=1.0">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
     {% block styles %}
     {% endblock %}
@@ -17,7 +18,7 @@
 <div class="grid">
     <div>
         <a href="../../"><img src="../static/img/newlogo.png" class="logo" ></a>
-        <input type="text" class='search' placeholder="Мы найдём! Только попроси...">
+        <!--<input type="text" class='search' placeholder="Мы найдём! Только попроси...">-->
         {% if user.username %}
             <button class="header-button-right" onclick="location.href = '/logout'">Log out</button>
             <button class="header-button-right">Settings</button>
@@ -58,9 +59,7 @@
         <div>
 
             {% if user.username %}
-                <form action="/new_question" method="get">
-                    <button class='question-button'>Задать вопрос</button>
-                </form>
+                <button id='qs_button' class='question-button'>Задать вопрос</button>
             {% endif %}
         </div>
 

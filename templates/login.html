@@ -37,12 +37,7 @@
                 <div id="login">
                     <h1>Welcome Back!</h1>
                     <form method="post"> {% csrf_token %}
-                        <div class="field-wrap">
-                            <label> Username<span class="req">*</span> </label>
-                            {{ login_form.username }} </div>
-                        <div class="field-wrap">
-                            <label> Password<span class="req">*</span> </label>
-                            {{ login_form.password }}</div>
+                        {{ login_form.as_p }}
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <button class="button button-block"  type="submit" name="log"/>Log In</button>
                     </form>

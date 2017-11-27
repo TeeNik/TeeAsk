@@ -1,58 +1,106 @@
 {% extends "base.html" %}
-{%  load staticfiles %}
+{% load staticfiles %}
 
-    {% block center %}
-        <div class='center'>
-            {% for p in posts %}
-                <div class="post" id="post_id-{{ p.id }}">
-                    <div class="post-pic">
-                        <img class='post-img' src="{{ MEDIA_URL }}{{ p.author.avatar.url }}" />
+{% block styles %}
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../static/css/nqst.css?v=1.3">
+{% endblock %}
+
+{% block center %}
+    <div class='center'>
+        {% for p in posts %}
+            <div class="post" id="post_id-{{ p.id }}">
+                <div class="post-pic">
+                    <img class='post-img' src="{{ MEDIA_URL }}{{ p.author.avatar.url }}"/>
+                </div>
+                <div class="post-text">
+                    <h2>
+                        <a href="{% url 'get question' p.id %}">{{ p.title }}</a>
+                    </h2>
+                    {{ p.text }}
+                    <p>Вопрос задан пользователем: <a id="user_anchor"
+                                                      href="{% url 'get user posts' p.id %}">{{ p.author }}</a></p>
+                    <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
+
+                    <div>
+                        <img class="rating-img" id='like' src="../static/img/lois.png">
+
+                        {% if p.likes >= 0 %}
+                            <font id='score' size='7' color='green'>{{ p.likes }}</font>
+                        {% else %}
+                            <font id='score' size='7' color='red'>{{ p.likes }}</font>
+                        {% endif %}
+
+                        <img class="rating-img" id='dislike' src="../static/img/dislois.png">
                     </div>
-                    <div class="post-text">
-                        <h2>
-                            <a href="{% url 'get question' p.id %}">{{ p.title }}</a>
-                        </h2>
-                        {{ p.text }}
-                        <p>Вопрос задан пользователем: <a id="user_anchor" href="{% url 'get user posts' p.id%}">{{ p.author }}</a></p>
-                        <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
 
-                        <div>
-                            <img class="rating-img" id='like' src="../static/img/lois.png">
-
-                            {% if p.likes >= 0 %}
-                                <font id='score' size='7' color='green'>{{ p.likes }}</font>
-                            {% else %}
-                                <font id='score' size='7' color='red'>{{ p.likes }}</font>
-                            {% endif %}
-
-                            <img class="rating-img" id='dislike' src="../static/img/dislois.png">
+                </div>
+            </div>
+        {% endfor %}
+        <div id="myModal" class="modal">
+            <div class="form">
+                <img class='login-img' src="../static/img/Budda.gif">
+                <div class="inner">
+                    <div class="tab-content">
+                        <div id="login">
+                            <h1></h1>
+                            <form id='nq-form' method="post"> {% csrf_token %}
+                                <div class="field-wrap">
+                                    {{ ques_form.title }}
+                                </div>
+                                <div class="field-wrap">
+                                    {{ ques_form.text }}
+                                </div>
+                                <button id='nq-button' class="button button-block"/>
+                                Готово</button>
+                            </form>
                         </div>
-
                     </div>
                 </div>
-            {% endfor %}
-
+            </div>
         </div>
-    {% endblock %}
 
-    {% block scripts %}
+    </div>
+{% endblock %}
 
-        <script>
-            $('[id^="like"]').click(function () {
-                let id = $(this).closest("div.post").attr("id").split('-')[1];
-                $.get('/like', {'id':id, 'value':1}, function (data) {
-                    var el = document.getElementById('post_id-'+data.id);
-                    el.querySelector('#score').innerText = data.like;
-                });
+
+{% block scripts %}
+    <script src="../static/js/index.js"></script>
+    <script>
+        $('#nq-form').submit(function (e) {
+            //e.preventDefault();
+            let title = $('#id_title').val();
+            let text = $('#id_text').val();
+
+            /*$.post('/new_question/', {'title':title, 'text':text, 'csrfmiddlewaretoken': '
+            {{ csrf_token }}'}, function (data) {
+                console.log(123123);
+            });*/
+        });
+    </script>
+
+    <script>
+        $('[id^="like"]').click(function () {
+            let id = $(this).closest("div.post").attr("id").split('-')[1];
+            $.get('/like', {'id': id, 'value': 1}, function (data) {
+                var el = document.getElementById('post_id-' + data.id);
+                el.querySelector('#score').innerText = data.like;
             });
-            $('[id^="dislike"]').click(function () {
-                let id = $(this).closest("div.post").attr("id").split('-')[1];
-                $.get('/like', {'id':id, 'value':-1}, function (data) {
-                    var el = document.getElementById('post_id-'+data.id);
-                    el.querySelector('#score').innerText = data.like;
-                });
+        });
+        $('[id^="dislike"]').click(function () {
+            let id = $(this).closest("div.post").attr("id").split('-')[1];
+            $.get('/like', {'id': id, 'value': -1}, function (data) {
+                var el = document.getElementById('post_id-' + data.id);
+                el.querySelector('#score').innerText = data.like;
             });
-        </script>
-    {% endblock %}
+        });
+        console.log($('#qs_button'));
+        $('#qs_button').click(function () {
+            $('#myModal').show();
+            console.log(123);
+        });
+    </script>
+{% endblock %}
 
 
