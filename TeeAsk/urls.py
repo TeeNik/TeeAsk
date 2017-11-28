@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^$', IndexView.as_view()),
     url(r'^user/(?P<id>\d+)', UserPosts.as_view(), name='get user posts'),
     url(r'^login/', LoginView.as_view()),
+    url(r'^load/', LoadView.as_view()),
     url(r'^logout/', LogoutView.as_view()),
     url(r'^like/', LiveView.as_view()),
     url(r'^new_question/', NewQuestionView.as_view()),

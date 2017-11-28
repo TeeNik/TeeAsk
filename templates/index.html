@@ -16,7 +16,7 @@
                 </div>
                 <div class="post-text">
                     <h2>
-                        <a href="{% url 'get question' p.id %}">{{ p.title }}</a>
+                        <a id='title' href="{% url 'get question' p.id %}">{{ p.title }}</a>
                     </h2>
                     {{ p.text }}
                     <p>Вопрос задан пользователем: <a id="user_anchor"
@@ -67,6 +67,7 @@
 
 {% block scripts %}
     <script src="../static/js/index.js"></script>
+    <script src="../static/js/scroll.js?v1.0"></script>
     <script>
         $('#nq-form').submit(function (e) {
             //e.preventDefault();
@@ -95,7 +96,6 @@
                 el.querySelector('#score').innerText = data.like;
             });
         });
-        console.log($('#qs_button'));
         $('#qs_button').click(function () {
             $('#myModal').show();
             console.log(123);

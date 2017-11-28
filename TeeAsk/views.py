@@ -13,7 +13,7 @@ class IndexView(View):
     def get(self, request):
         ques_form = QuestionForm(initial={'title': 'Заголовок', 'text': 'Текст'})
         title = 'TeeAsk'
-        posts = Post.objects.all()
+        posts = Post.objects.order_by('-id')[:4];
         return render(request, 'index.html', locals())
     def post(self, request):
         print(1)
@@ -24,6 +24,14 @@ class IndexView(View):
         post.text = text
         post.save()
         return redirect('/', request.user)
+
+class LoadView(View):
+    def get(self, request):
+        start = (int)(request.GET.get('start'))
+        posts = Post.objects.order_by('-id')[:(4*start)]
+        #del posts[:(4*(start-1))]
+        data = serializers.serialize('json', posts)
+        return HttpResponse(data)
 
 
 class UserPosts(View):
