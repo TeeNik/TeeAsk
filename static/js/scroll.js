@@ -12,20 +12,26 @@ $(window).scroll(function () {
         }).done(function (data) {
             data = jQuery.parseJSON(data);
             console.log(data);
-            /*if (data.length > 0) {
+            if (data.length > 0) {
+                for(let i = 0; i < data.length; i++){
+                    let inf = data[i].fields;
+                    let $post = $('#post_id-24').clone();
+                    $post.attr('id', 'post_id-'+data[i].pk);
+                    $post.find('#title').text(inf.title);
+                    $post.find('#title').attr('href', '/question/'+inf.id);
+                    $post.find('post-text').text(inf.text);
+                    console.log($post);
+                    $('#thread').append($post);
+                }
+
                 $.each(data, function (index, data) {
 
-                    let post = $('#post_id-1').clone();
-                    post.setAttribute('id', 'post_id-'+data.id);
-                    $(post).find('#title').text(data.title);
-                    $(post).find('#title').setAttribute('href', '/question/'+data.id);
-                    $(post).find('post-text').text(data.text);
-                    $('center').appendChild(post);
+
                 });
 
                 inProgress = false;
                 startFrom += 10;
-            }*/
+            }
         });
     }
 });
