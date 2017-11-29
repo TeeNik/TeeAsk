@@ -29,12 +29,17 @@ class LoadView(View):
     def get(self, request):
         start = (int)(request.GET.get('start'))
         posts = Post.objects.order_by('-id')
-        #posts = Post.objects.all()
+        users = []
         res = posts[start:start+4]
-        print(res)
-        #del posts[:(4*(start-1))]
-        data = serializers.serialize('json', res)
+        for r in res:
+            users.append(Profile.objects.get(id = r.author.id))
+            users.append(r)
+
+        print(users)
+        fin = {'res': res, 'users':users}
+        data = serializers.serialize('json', users)
         return HttpResponse(data)
+        #HttpResponse(json.dumps(users), content_type='application/json')
 
 
 class UserPosts(View):
