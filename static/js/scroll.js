@@ -1,5 +1,5 @@
 var inProgress = false;
-var startFrom = 1;
+var startFrom = 5;
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !inProgress) {
         $.ajax({
@@ -18,19 +18,13 @@ $(window).scroll(function () {
                     let $post = $('#post_id-24').clone();
                     $post.attr('id', 'post_id-'+data[i].pk);
                     $post.find('#title').text(inf.title);
-                    $post.find('#title').attr('href', '/question/'+inf.id);
-                    $post.find('post-text').text(inf.text);
-                    console.log($post);
+                    $post.find('#title').attr('href', '/question/'+data[i].pk);
+                    $post.find('#post-text').text(inf.text);
                     $('#thread').append($post);
                 }
 
-                $.each(data, function (index, data) {
-
-
-                });
-
                 inProgress = false;
-                startFrom += 10;
+                startFrom += 4;
             }
         });
     }

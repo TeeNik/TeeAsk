@@ -14,11 +14,11 @@
                 <div class="post-pic">
                     <img class='post-img' src="{{ MEDIA_URL }}{{ p.author.avatar.url }}"/>
                 </div>
-                <div class="post-text">
+                <div  class="post-text">
                     <h2>
                         <a id='title' href="{% url 'get question' p.id %}">{{ p.title }}</a>
                     </h2>
-                    {{ p.text }}
+                    <p id='post-text'>{{ p.text }}</p>
                     <p>Вопрос задан пользователем: <a id="user_anchor"
                                                       href="{% url 'get user posts' p.id %}">{{ p.author }}</a></p>
                     <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>

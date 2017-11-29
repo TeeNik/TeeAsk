@@ -28,9 +28,12 @@ class IndexView(View):
 class LoadView(View):
     def get(self, request):
         start = (int)(request.GET.get('start'))
-        posts = Post.objects.order_by('-id')[:(4*start)]
+        posts = Post.objects.order_by('-id')
+        #posts = Post.objects.all()
+        res = posts[start:start+4]
+        print(res)
         #del posts[:(4*(start-1))]
-        data = serializers.serialize('json', posts)
+        data = serializers.serialize('json', res)
         return HttpResponse(data)
 
 
