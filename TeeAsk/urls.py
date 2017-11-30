@@ -18,4 +18,4 @@ urlpatterns = [
     url(r'^new_question/', NewQuestionView.as_view()),
     url(r'^question/(?P<num>\d+)', QuestionView.as_view(), name='get question'),
     url(r'^settings/', SettingsView.as_view()),
-] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

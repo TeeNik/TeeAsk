@@ -136,6 +136,10 @@ body {
     max-width: 70px;
     width: 7vw;
     height: 3vh;
+
+}
+
+.used-like {
     filter: grayscale(100%);
 }
 

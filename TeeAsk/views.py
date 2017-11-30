@@ -15,6 +15,10 @@ class IndexView(View):
         ques_form = QuestionForm(initial={'title': 'Заголовок', 'text': 'Текст'})
         title = 'TeeAsk'
         posts = Post.objects.order_by('-id')[:4];
+        likes = None
+        if request.user is not  None:
+            liked_posts = Like.objects.filter(user=request).values_list("post")
+            likes = Like.objects.filter(user=request.user)
         return render(request, 'index.html', locals())
     def post(self, request):
         print(1)

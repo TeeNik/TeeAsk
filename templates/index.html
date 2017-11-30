@@ -24,6 +24,21 @@
                     <p>answers ( {{ p.answers }} ) Tags: stupid questions</p>
 
                     <div>
+                        {% if p in liked_posts %}
+                            {% for l in likes %}
+                                {% if l.post.id == p.id %}
+                                    {% if l.value > 0 %}
+
+
+                                    {%  else %}
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            {% endfor %}
+                        {% endif %}
+
                         <img class="rating-img" id='like' src="../static/img/lois.png">
 
                         {% if p.likes >= 0 %}
