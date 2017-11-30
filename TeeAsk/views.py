@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 import json
 
 from django.core import serializers
+from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -31,16 +32,15 @@ class LoadView(View):
         posts = Post.objects.order_by('-id')
         users = []
         res = posts[start:start+4]
+        data = []
         for r in res:
-            users.append(Profile.objects.get(id = r.author.id))
-            users.append(r)
+            #p = Profile.objects.get(id = r.author.id)
+            p = Post.objects.get(id = r.author.id)
+            users.append({'text':p.text,'title':p.title, 'author':p.author.username, 'id':p.id})
 
         print(users)
-        fin = {'res': res, 'users':users}
-        data = serializers.serialize('json', users)
-        return HttpResponse(data)
-        #HttpResponse(json.dumps(users), content_type='application/json')
-
+        #data = serializers.serialize('json', users)
+        return HttpResponse(json.dumps(users), content_type='application/json')
 
 class UserPosts(View):
     def get(self, request, id):
