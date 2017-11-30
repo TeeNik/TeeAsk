@@ -32,14 +32,9 @@ class LoadView(View):
         posts = Post.objects.order_by('-id')
         users = []
         res = posts[start:start+4]
-        data = []
         for r in res:
-            #p = Profile.objects.get(id = r.author.id)
             p = Post.objects.get(id = r.author.id)
-            users.append({'text':p.text,'title':p.title, 'author':p.author.username, 'id':p.id})
-
-        print(users)
-        #data = serializers.serialize('json', users)
+            users.append({'text':p.text,'title':p.title, 'author':p.author.username, 'id':p.id, 'avatar':p.author.avatar.url})
         return HttpResponse(json.dumps(users), content_type='application/json')
 
 class UserPosts(View):
