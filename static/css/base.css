@@ -1,6 +1,7 @@
 :root {
-    --bg: rgb(237, 237, 238);
-    --border: #a8a8a8;
+    --bg: #0073bf;
+    --border: #0a3446;
+    --post_bg: #9bd0f2
 }
 
 html {
@@ -99,7 +100,7 @@ body {
     margin: 1vh 2vw;
     border: solid 2px var(--border);
     border-radius: 15px;
-    background-color: #dce6f2;
+    background-color: var(--post_bg);
 }
 
 .post-pic {
