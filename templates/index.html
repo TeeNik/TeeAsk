@@ -81,7 +81,7 @@
 
 
 {% block scripts %}
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/modal.js"></script>
     <script src="../static/js/scroll.js?v1.1"></script>
     <script>
         $('#nq-form').submit(function (e) {
@@ -111,10 +111,7 @@
                 el.querySelector('#score').innerText = data.like;
             });
         });
-        $('#qs_button').click(function () {
-            $('#myModal').show();
-            console.log(123);
-        });
+
     </script>
 {% endblock %}
 
