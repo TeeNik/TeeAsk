@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 import json
 
+from django.contrib.auth.models import AnonymousUser
 from django.core import serializers
 from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
@@ -16,7 +17,7 @@ class IndexView(View):
         title = 'TeeAsk'
         posts = Post.objects.order_by('-id')[:4];
         likes = None
-        if request.user is not  None:
+        if request.user.is_authenticated():#  is not None or request.user is not AnonymousUser:
             liked_posts = Like.objects.filter(user=request).values_list("post")
             likes = Like.objects.filter(user=request.user)
         return render(request, 'index.html', locals())
@@ -48,37 +49,44 @@ class UserPosts(View):
         posts = Post.objects.filter(author=post.author)
         return render(request, 'index.html', locals())
 
+class RegisterView(View):
+    def get(self, request):
+        reg_form = RegistrationForm(request.POST or None)
+        title = 'TeeAsk'
+        return render(request, 'register.html', locals())
+
+    def post(self, request):
+        reg_form = RegistrationForm(request.POST or None)
+        if reg_form.is_valid():
+            print(2)
+            user = Profile.objects.create(email=reg_form.cleaned_data["email"],
+                                          username=reg_form.cleaned_data["username"],
+                                          password=reg_form.cleaned_data["password"])
+            user.save()
+
+            user = authenticate(username=reg_form.cleaned_data["username"],
+                                password=reg_form.cleaned_data["password"])
+            if user is not None:
+                login(request, user)
+                return redirect('/', user)
+
 class LoginView(View):
     def get(self, request):
         title = 'TeeAsk'
         login_form = LoginForm(request.POST or None)
-        reg_form = RegistrationForm(request.POST or None)
         return render(request, 'login.html', locals())
 
     def post(self, request):
         login_form = LoginForm(request.POST or None)
-        reg_form = RegistrationForm(request.POST or None)
-        if 'log' in request.POST:
-            if login_form.is_valid():
-                print(1)
-                user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
-                if user is not None:
-                    login(request, user)
-                    return redirect('/', user)
+        if login_form.is_valid():
+            print(1)
+            user = authenticate(username=login_form.cleaned_data["username"], password=login_form.cleaned_data["password"])
+            if user is not None:
+                login(request, user)
+                return redirect('/', user)
             else:
-                if reg_form.is_valid():
-                    print(2)
-                    user = Profile.objects.create(email=reg_form.cleaned_data["email"],
-                                                  username=reg_form.cleaned_data["username"],
-                                                  password=reg_form.cleaned_data["password"])
-                    user.save()
-
-                    user = authenticate(username=reg_form.cleaned_data["username"],
-                                        password=reg_form.cleaned_data["password"])
-                    if user is not None:
-                        login(request, user)
-                        return redirect('/', user)
-        return render(request, 'login.html', locals())
+                error = "Неверный логин или пароль"
+                return render(request, 'login.html', locals())
 
 class SettingsView(View):
     def get(self, request):

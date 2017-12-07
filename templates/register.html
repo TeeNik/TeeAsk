@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+{% endblock %}
+
+
+{% block center %}
+    <div class="form">
+        <img class='login-img' src="../static/img/%D0%A1%D0%B8%D0%BC.png">
+        <div class="inner">
+            <div id="signup">
+                <h1>Sign Up for Free</h1>
+                <form method="post"> {% csrf_token %}
+                    <div class="field-wrap">
+                        <label> Username<span class="req">*</span> </label>
+                        {{ reg_form.username }}
+                    </div>
+                    <div class="field-wrap">
+                        <label> Email Address<span class="req">*</span> </label>
+                        {{ reg_form.email }} </div>
+                    <div class="field-wrap">
+                        <label> Set A Password<span class="req">*</span> </label>
+                        {{ reg_form.password }} </div>
+                    <button type="submit" class="button button-block" name="reg"/>
+                    Get Started</button>
+                </form>
+            </div>
+            <!-- tab-content -->
+        </div>
+    </div>
+{% endblock %}
