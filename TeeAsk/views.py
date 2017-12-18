@@ -17,7 +17,7 @@ class IndexView(View):
         title = 'TeeAsk'
         posts = Post.objects.order_by('-id')[:4];
         likes = None
-        if request.user.is_authenticated():#  is not None or request.user is not AnonymousUser:
+        if request.user.is_authenticated:#  is not None or request.user is not AnonymousUser:
             liked_posts = Like.objects.filter(user=request).values_list("post")
             likes = Like.objects.filter(user=request.user)
         return render(request, 'index.html', locals())
