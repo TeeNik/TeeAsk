@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 import json
 
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AnonymousUser
 from django.core import serializers
 from django.forms import model_to_dict
@@ -58,17 +59,12 @@ class RegisterView(View):
     def post(self, request):
         reg_form = RegistrationForm(request.POST or None)
         if reg_form.is_valid():
-            print(2)
             user = Profile.objects.create(email=reg_form.cleaned_data["email"],
-                                          username=reg_form.cleaned_data["username"],
-                                          password=reg_form.cleaned_data["password"])
+                                          username=reg_form.cleaned_data["username"])
+            user.set_password(reg_form.cleaned_data["password"])
             user.save()
 
-            user = authenticate(username=reg_form.cleaned_data["username"],
-                                password=reg_form.cleaned_data["password"])
-            if user is not None:
-                login(request, user)
-                return redirect('/', user)
+            return render(request, 'index.html', locals())
 
 class LoginView(View):
     def get(self, request):
