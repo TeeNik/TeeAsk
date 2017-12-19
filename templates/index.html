@@ -53,13 +53,35 @@
                 </div>
             </div>
         {% endfor %}
-        <div id="myModal" class="modal">
+        <div id="quesModal" class="modal">
             <div class="form">
                 <img class='login-img' src="../static/img/Budda.gif">
                 <div class="inner">
                     <div class="tab-content">
                         <div id="login">
                             <h1></h1>
+                            <form id='nq-form' method="post"> {% csrf_token %}
+                                <div class="field-wrap">
+                                    {{ ques_form.title }}
+                                </div>
+                                <div class="field-wrap">
+                                    {{ ques_form.text }}
+                                </div>
+                                <button id='nq-button' class="button button-block"/>
+                                Готово</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="settingModal" class="modal">
+            <div class="form">
+                <img class='login-img' src="../static/img/Magnitik.png">
+                <div class="inner">
+                    <div class="tab-content">
+                        <div id="login">
+                            <h1>Тут вы можете сменить ник и аватар</h1>
                             <form id='nq-form' method="post"> {% csrf_token %}
                                 <div class="field-wrap">
                                     {{ ques_form.title }}
@@ -84,20 +106,7 @@
     <script src="../static/js/modal.js"></script>
     <script src="../static/js/scroll.js?v1.1"></script>
     <script>
-        $('#nq-form').submit(function (e) {
-            //e.preventDefault();
-            let title = $('#id_title').val();
-            let text = $('#id_text').val();
-
-            /*$.post('/new_question/', {'title':title, 'text':text, 'csrfmiddlewaretoken': '
-            {{ csrf_token }}'}, function (data) {
-                console.log(123123);
-            });*/
-        });
-    </script>
-
-    <script>
-        $('[id^="like"]').click(function () {
+         $('[id^="like"]').click(function () {
             let id = $(this).closest("div.post").attr("id").split('-')[1];
             $.get('/like', {'id': id, 'value': 1}, function (data) {
                 var el = document.getElementById('post_id-' + data.id);
@@ -111,8 +120,8 @@
                 el.querySelector('#score').innerText = data.like;
             });
         });
-
     </script>
+
 {% endblock %}
 
 

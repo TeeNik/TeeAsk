@@ -1,10 +1,22 @@
 $('#qs_button').click(function () {
-    $('#myModal').show();
+    $('#quesModal').show();
 });
 
-var modal = document.getElementById('myModal');
+$('#set_button').click(function () {
+    $('#settingModal').show();
+});
+
+var quesModal = document.getElementById('quesModal');
 window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == quesModal) {
+        quesModal.style.display = "none";
     }
-}
+};
+
+var setModal = document.getElementById('settingModal');
+window.onclick = function (event) {
+    if (event.target == setModal) {
+        setModal.style.display = "none";
+    }
+};
+
