@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title> {{ title }} </title>
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css?v=1.7">
+    <link rel="stylesheet" type="text/css" href="../static/css/base.css?v=1.8">
     <link rel="stylesheet" type="text/css" href="../static/css/modal.css?v=1.0">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
     {% block styles %}
@@ -22,11 +22,12 @@
         {% if user.username %}
             <button class="header-button-right"><a href="/logout">Log out</a></button>
             <button class="header-button-right">Settings</button>
+            <img src={{ user.avatar.url }} class="header-button-right">
         {% else %}
             <button class="header-button-right"><a href="/register">Sing up</a></button>
             <button class="header-button-right"><a href="/login">Log in</a> </button>
         {% endif %}
-        <img src={{ user.avatar.url }} class="header-button-right">
+
     </div>
     <div class='center'>
         {% block center %}
