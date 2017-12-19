@@ -85,26 +85,14 @@ class LoginView(View):
                 return render(request, 'login.html', locals())
 
 class SettingsView(View):
-    def get(self, request):
-        title = 'TeeAsk'
-        reg_form = RegistrationForm(request.POST or None)
-
-        if request.method == 'POST':
-            if reg_form.is_valid():
-                print(2)
-                user = Profile.objects.create(email=reg_form.cleaned_data["email"],
-                                              username=reg_form.cleaned_data["username"],
-                                              password=reg_form.cleaned_data["password"])
-                user.save()
-
-                user = authenticate(username=reg_form.cleaned_data["username"],
-                                    password=reg_form.cleaned_data["password"])
-
-                if user is not None:
-                    login(request, user)
-                    return redirect('/', user)
-
-        return render(request, 'setting.html', locals())
+    def post(self, request):
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = Profile.objects.get(username = request.user.username)
+            print(form.cleaned_data)
+            user.avatar = form.cleaned_data['avatar']
+            user.save()
+        return render(request, 'index.html', locals())
 
 class LogoutView(View):
     def get(self, request):

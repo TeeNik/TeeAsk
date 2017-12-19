@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, UserManager
 
 
 class Profile(User):
-    avatar = models.ImageField(default='default.png')
+    avatar = models.ImageField(upload_to='media', default='default.png')
     objects = UserManager()
 
     def __unicode__(self):

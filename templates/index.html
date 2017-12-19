@@ -14,7 +14,7 @@
                 <div class="post-pic">
                     <img class='post-img' src="{{ MEDIA_URL }}{{ p.author.avatar.url }}"/>
                 </div>
-                <div  class="post-text">
+                <div class="post-text">
                     <h2>
                         <a id='title' href="{% url 'get question' p.id %}">{{ p.title }}</a>
                     </h2>
@@ -30,7 +30,7 @@
                                     {% if l.value > 0 %}
 
 
-                                    {%  else %}
+                                    {% else %}
 
                                     {% endif %}
 
@@ -77,7 +77,13 @@
         </div>
         <div id="settingModal" class="modal">
             <div class="form">
-                <img class='login-img' src="../static/img/Magnitik.png">
+                <form action="{% url 'upload_pic' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <p>
+                        <input id="id_image" type="file" class="" name="image">
+                    </p>
+                    <input type="submit" value="Выбрать аватар"/>
+                </form>
+                <!--<img class='login-img' src="../static/img/Magnitik.png">
                 <div class="inner">
                     <div class="tab-content">
                         <div id="login">
@@ -94,7 +100,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -106,7 +112,7 @@
     <script src="../static/js/modal.js"></script>
     <script src="../static/js/scroll.js?v1.1"></script>
     <script>
-         $('[id^="like"]').click(function () {
+        $('[id^="like"]').click(function () {
             let id = $(this).closest("div.post").attr("id").split('-')[1];
             $.get('/like', {'id': id, 'value': 1}, function (data) {
                 var el = document.getElementById('post_id-' + data.id);

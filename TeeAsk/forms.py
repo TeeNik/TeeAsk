@@ -22,3 +22,8 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['text']
+
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar']
