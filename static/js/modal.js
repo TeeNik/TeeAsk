@@ -7,16 +7,11 @@ $('#set_button').click(function () {
 });
 
 var quesModal = document.getElementById('quesModal');
-window.onclick = function (event) {
-    if (event.target == quesModal) {
-        quesModal.style.display = "none";
-    }
-};
-
 var setModal = document.getElementById('settingModal');
+
 window.onclick = function (event) {
-    if (event.target == setModal) {
+    if (event.target == quesModal || event.target == setModal) {
+        quesModal.style.display = "none";
         setModal.style.display = "none";
     }
 };
-
